@@ -45,6 +45,33 @@ html {
 }
 
 /*
+ * Authored <details> (all groups): pico floats its chevron to the
+ * container's far edge, a full line-width from the summary text, so a
+ * fold reads as plain prose. Box the fold and seat the caret with the
+ * text.
+ */
+[data-design] details {
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 0.375rem;
+  padding: 0.75rem 1rem;
+}
+
+[data-design] details > summary {
+  cursor: pointer;
+}
+
+[data-design] details > summary::after {
+  float: left;
+  margin-right: 0.5rem;
+}
+
+[data-design] details[open] > summary {
+  border-bottom: 1px solid var(--pico-muted-border-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+/*
  * Prose typography per group. Each group's whole design is owned by its
  * route template (templates/runtime/page.gjs, templates/typedoc/page.gjs);
  * the rules here reach into the rendered markdown, which scoped styles
