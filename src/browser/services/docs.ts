@@ -7,7 +7,7 @@ import { createStore } from 'ember-primitives/store';
 import { type ModuleMap, type ScopeMap, setupCompiler } from 'ember-repl';
 
 import { rebaseAuthoredLinks } from '../../rebase-links.js';
-import { equalsIgnoreCase } from '../path-matching.ts';
+import { equalsIgnoreCase, samePagePath } from '../path-matching.ts';
 import { groupNameForRoute, indexRouteNameFor, routeNameForGroup } from '../scoped-routes.ts';
 import { APIDocs, CommentQuery } from '../typedoc/renderer.gts';
 import { ComponentSignature } from '../typedoc/signature/component.gts';
@@ -456,11 +456,7 @@ class DocsService {
    * with or without the `.md` extension.
    */
   findByPath = (path: string) => {
-    return this.pages.find(
-      (page) =>
-        equalsIgnoreCase(page.appRelativePath, path) ||
-        equalsIgnoreCase(page.appRelativePath, path + '.md')
-    );
+    return this.pages.find((page) => samePagePath(page.appRelativePath, path));
   };
 }
 

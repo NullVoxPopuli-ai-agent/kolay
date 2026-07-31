@@ -9,3 +9,11 @@
 export function equalsIgnoreCase(a: string, b: string): boolean {
   return a.toLowerCase() === b.toLowerCase();
 }
+
+/**
+ * Whether two paths name the same page: paths with and without the
+ * `.md` extension are the same page (both are visitable).
+ */
+export function samePagePath(a: string, b: string): boolean {
+  return equalsIgnoreCase(a.replace(/\.md$/i, ''), b.replace(/\.md$/i, ''));
+}

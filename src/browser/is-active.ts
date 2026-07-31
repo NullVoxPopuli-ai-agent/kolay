@@ -1,4 +1,4 @@
-import { equalsIgnoreCase } from './path-matching.ts';
+import { samePagePath } from './path-matching.ts';
 
 import type { Collection, Page } from '../types.ts';
 
@@ -34,5 +34,5 @@ export function isActive(item: Page | Collection, currentURL: string | null | un
 
   const [current = ''] = currentURL?.split(/[?#]/) ?? [];
 
-  return equalsIgnoreCase(current.replace(/\.md$/i, ''), subPath.replace(/\.md$/i, ''));
+  return samePagePath(current, subPath);
 }
